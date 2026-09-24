@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byPlaceholder;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.WebDriverConditions.url;
@@ -59,26 +58,32 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         webdriver().shouldHave(
                 url("https://abdgtl.com/productsandservices"));
     }
-//    @Test
-//    void eventCardShouldOpenEventPage() {
-//        open("");
-//
-//        SelenideElement cookieBanner =
-//                $("[aria-label='Уведомление об использовании файлов cookie']");
-//
-//        if (cookieBanner.isDisplayed()) {
-//            cookieBanner.$("button").click();
-//        }
-//
-//        $("[aria-label='Открыть Всё будет Челентано']")
-//                .shouldBe(visible)
-//                .click();
-//
-//        webdriver().shouldHave(urlContaining("/vsyo-budet-chelentano/"));
-//
-//
-//        $("h1").shouldBe(visible)
-//                .shouldHave(text("Всё будет Челентано"));
-//    }
+    @Test
+    @DisplayName("На основных страницах отображаются ожидаемые заголовки")
+    void pagesShouldHaveExpectedHeadings() {
+        open("");
+
+        $$("h1, h2, h3, .tn-atom")
+                .findBy(exactText("Все по-взрослому"))
+                .shouldBe(visible);
+
+        open("/blog");
+
+        $$(".t-section__title")
+                .findBy(exactText("Даем шума"))
+                .shouldBe(visible);
+
+        open("/technologies");
+
+        $$(".t-title")
+                .findBy(exactText("Технологический радар AB Digital"))
+                .shouldBe(visible);
+
+        open("/productsandservices");
+
+        $$(".t-section__title")
+                .findBy(exactText("Продукты"))
+                .shouldBe(visible);
+    }
 
 }
