@@ -7,10 +7,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
-public class TicketlandBase {
+public class AbdgtlBase {
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = System.getProperty("BASE_URL", "https://www.ticketland.ru/");
+        Configuration.baseUrl = System.getProperty("BASE_URL", "https://abdgtl.com/");
         Configuration.browser = System.getProperty("BROWSER", "chrome");
 //        Configuration.browserVersion = System.getProperty("BROWSER_VERSION", "151.0");
         Configuration.browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");

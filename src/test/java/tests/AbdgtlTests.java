@@ -12,7 +12,7 @@ import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
 
 
-public class TicketlandTests extends TicketlandBase {
+public class AbdgtlTests extends AbdgtlBase {
     @Test
     void mainPageShouldOpen() {
         open ("");
