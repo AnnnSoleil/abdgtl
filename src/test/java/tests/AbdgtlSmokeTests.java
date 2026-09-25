@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Configuration.baseUrl;
@@ -12,9 +13,9 @@ import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
 
 public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
-    @DisplayName("Главная страница открывается")
+    @DisplayName("Тест 1. Главная страница открывается")
     void mainPageShouldOpen() {
-        open ("");
+        open("");
 
         webdriver().shouldHave(urlStartingWith(baseUrl));
         $$(".tn-atom")
@@ -25,10 +26,11 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
                                 "продукты для удобства клиентов банка"
                 ));
     }
+
     @Test
-    @DisplayName("Дочерние страницы открываются из меню")
+    @DisplayName("Тест 2. Дочерние страницы открываются из меню")
     void childPagesShouldOpenFromMenu() {
-        open ("");
+        open("");
 
         $$("a")
                 .filterBy(exactText("О Нас"))
@@ -58,8 +60,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         webdriver().shouldHave(
                 url("https://abdgtl.com/productsandservices"));
     }
+
     @Test
-    @DisplayName("На основных страницах отображаются ожидаемые заголовки")
+    @DisplayName("Тест 3. На основных страницах отображаются ожидаемые заголовки")
     void pagesShouldHaveExpectedHeadings() {
         open("");
 
@@ -86,4 +89,30 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
                 .shouldBe(visible);
     }
 
+
+    @Test
+    @DisplayName("Тест 4. Кнопка вакансий содержит корректную ссылку")
+    void vacancyButtonsShouldHaveCorrectLink() {
+        open("");
+
+        $$("a")
+                .filterBy(exactText("Вперёд к вакансиям!"))
+                .filterBy(visible)
+                .shouldHave(size(2))
+                .forEach(button->button.shouldBe(attribute("href", "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list")));
+    }
+
+    @Test
+    @DisplayName("Тест 5. Футер отображается")
+    void footerShouldBeVisible() {
+        open("");
+
+        $("#t-footer")
+                .shouldBe(visible)
+                .shouldHave(
+                        text("info@abdgtl.com"),
+                        text("+7(843) 294-72-61")
+                );
+
+    }
 }
