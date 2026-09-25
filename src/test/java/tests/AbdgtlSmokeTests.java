@@ -115,4 +115,29 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
                 );
 
     }
+
+    @Test
+    @DisplayName("Тест 6. Ссылки на юридические документы отображаются и содержат корректные адреса")
+    void legalDocumentLinksShouldBeAvailable() {
+        open("");
+
+        $$("a")
+                .filterBy(exactText("Политика обработки персональных данных"))
+                .shouldHave(size(1))
+                .first()
+                .shouldBe(visible)
+                .shouldHave(attribute(
+                        "href",
+                        "https://static.abdt.ru/docs/privacy_policy.pdf"));
+
+        $$("a")
+                .filterBy(exactText("Пользовательское соглашение использования сайта"))
+                .shouldHave(size(1))
+                .first()
+                .shouldBe(visible)
+                .shouldHave(attribute(
+                        "href",
+                        "https://static.abdt.ru/docs/user_agreement_for_site_use.pdf"));
+
+    }
 }
