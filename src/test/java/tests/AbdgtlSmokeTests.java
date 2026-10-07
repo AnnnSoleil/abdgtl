@@ -1,5 +1,6 @@
 package tests;
 
+import components.HeaderComponent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,9 @@ import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
 
 
 public class AbdgtlSmokeTests extends AbdgtlBase {
+
+    private final HeaderComponent header = new HeaderComponent();
+
     @Test
     @DisplayName("Тест 1. Главная страница открывается")
     void mainPageShouldOpen() {
@@ -30,35 +34,48 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 2. Дочерние страницы открываются из меню")
     void childPagesShouldOpenFromMenu() {
+
         open("");
 
-        $$("a")
-                .filterBy(exactText("О Нас"))
-                .findBy(visible)
-                .click();
-        webdriver().shouldHave(
-                url("https://abdgtl.com/"));
+        header.clickMenuItem("О Нас");
+        webdriver().shouldHave(url(baseUrl + "/"));
 
-        $$("a")
-                .filterBy(exactText("Блог"))
-                .findBy(visible)
-                .click();
-        webdriver().shouldHave(
-                url("https://abdgtl.com/blog"));
+        header.clickMenuItem("Блог");
+        webdriver().shouldHave(url(baseUrl + "/blog"));
 
-        $$("a")
-                .filterBy(exactText("Технологии"))
-                .findBy(visible)
-                .click();
-        webdriver().shouldHave(
-                url("https://abdgtl.com/technologies"));
+        header.clickMenuItem("Технологии");
+        webdriver().shouldHave(url(baseUrl + "/technologies"));
 
-        $$("a")
-                .filterBy(exactText("Продукты и услуги"))
-                .findBy(visible)
-                .click();
-        webdriver().shouldHave(
-                url("https://abdgtl.com/productsandservices"));
+        header.clickMenuItem("Продукты и услуги");
+        webdriver().shouldHave(url(baseUrl + "/productsandservices"));
+
+//        $$("a")
+//                .filterBy(exactText("О Нас"))
+//                .findBy(visible)
+//                .click();
+//        webdriver().shouldHave(
+//                url("https://abdgtl.com/"));
+//
+//        $$("a")
+//                .filterBy(exactText("Блог"))
+//                .findBy(visible)
+//                .click();
+//        webdriver().shouldHave(
+//                url("https://abdgtl.com/blog"));
+//
+//        $$("a")
+//                .filterBy(exactText("Технологии"))
+//                .findBy(visible)
+//                .click();
+//        webdriver().shouldHave(
+//                url("https://abdgtl.com/technologies"));
+//
+//        $$("a")
+//                .filterBy(exactText("Продукты и услуги"))
+//                .findBy(visible)
+//                .click();
+//        webdriver().shouldHave(
+//                url("https://abdgtl.com/productsandservices"));
     }
 
     @Test
