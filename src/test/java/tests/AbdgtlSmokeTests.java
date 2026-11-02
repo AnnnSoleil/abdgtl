@@ -107,16 +107,16 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 6. Ссылки на юридические документы отображаются и содержат корректные адреса")
     void legalDocumentLinksShouldBeAvailable() {
-        String textPolice = "Политика обработки персональных данных";
-        String hrefPolice = "https://static.abdt.ru/docs/privacy_policy.pdf";
+        String textPolicy = "Политика обработки персональных данных";
+        String hrefPolicy = "https://static.abdt.ru/docs/privacy_policy.pdf";
         String textUser = "Пользовательское соглашение использования сайта";
         String hrefUser = "https://static.abdt.ru/docs/user_agreement_for_site_use.pdf";
 
         open("");
 
-        mainPage.checkLegalLink(textPolice, hrefPolice);
-
-        mainPage.checkLegalLink(textUser, hrefUser);
+        mainPage
+                .checkLegalLink(textPolicy, hrefPolicy)
+                .checkLegalLink(textUser, hrefUser);
 
     }
 }

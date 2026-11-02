@@ -28,7 +28,7 @@ public class HeaderComponent {
                 .shouldHave(size(1))
                 .forEach(button ->
                         button.shouldHave(attribute("href", VACANCY_URL))
-                        );
+                );
         return this;
     }
 }
