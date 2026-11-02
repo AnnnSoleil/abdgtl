@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class HeaderComponent {
     private static final String VACANCY_URL = "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list";
