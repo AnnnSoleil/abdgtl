@@ -112,11 +112,8 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     void vacancyButtonsShouldHaveCorrectLink() {
         open("");
 
-        $$("a")
-                .filterBy(exactText("Вперёд к вакансиям!"))
-                .filterBy(visible)
-                .shouldHave(size(2))
-                .forEach(button->button.shouldBe(attribute("href", "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list")));
+        header.checkVacancyButtons();
+
     }
 
     @Test
