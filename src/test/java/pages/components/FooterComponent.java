@@ -1,4 +1,4 @@
-package components;
+package pages.components;
 
 public class FooterComponent {
 }

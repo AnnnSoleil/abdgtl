@@ -1,15 +1,18 @@
-package components;
+package pages.components;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class HeaderComponent {
     private static final String VACANCY_URL = "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list";
 
-    private final ElementsCollection links = $$("a");
+    private final SelenideElement header = $("#t-header");
+    private final ElementsCollection links = header.$$("a");
 
     public HeaderComponent clickMenuItem(String menuItem) {
         links
@@ -23,7 +26,7 @@ public class HeaderComponent {
         links
                 .filterBy(exactText("Вперёд к вакансиям!"))
                 .filterBy(visible)
-                .shouldHave(size(2))
+                .shouldHave(size(1))
                 .forEach(button ->
                         button.shouldHave(attribute("href", VACANCY_URL))
                         );

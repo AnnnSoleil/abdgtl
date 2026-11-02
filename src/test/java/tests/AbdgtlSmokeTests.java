@@ -1,6 +1,6 @@
 package tests;
 
-import components.HeaderComponent;
+import pages.components.HeaderComponent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -49,33 +49,6 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         header.clickMenuItem("Продукты и услуги");
         webdriver().shouldHave(url(baseUrl + "/productsandservices"));
 
-//        $$("a")
-//                .filterBy(exactText("О Нас"))
-//                .findBy(visible)
-//                .click();
-//        webdriver().shouldHave(
-//                url("https://abdgtl.com/"));
-//
-//        $$("a")
-//                .filterBy(exactText("Блог"))
-//                .findBy(visible)
-//                .click();
-//        webdriver().shouldHave(
-//                url("https://abdgtl.com/blog"));
-//
-//        $$("a")
-//                .filterBy(exactText("Технологии"))
-//                .findBy(visible)
-//                .click();
-//        webdriver().shouldHave(
-//                url("https://abdgtl.com/technologies"));
-//
-//        $$("a")
-//                .filterBy(exactText("Продукты и услуги"))
-//                .findBy(visible)
-//                .click();
-//        webdriver().shouldHave(
-//                url("https://abdgtl.com/productsandservices"));
     }
 
     @Test
