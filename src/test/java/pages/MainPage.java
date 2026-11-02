@@ -5,9 +5,23 @@ import com.codeborne.selenide.ElementsCollection;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class MainPage {
     private final ElementsCollection links = $$("a");
+
+    public MainPage openPage() {
+        open("");
+        return this;
+    }
+
+    public MainPage checkSlogan(String textSearch, String textSlogan) {
+        $$(".tn-atom")
+                .filterBy(text(textSearch))
+                .findBy(visible)
+                .shouldHave(text(textSlogan));
+        return this;
+    }
 
     public MainPage checkLegalLink(String linkText, String href) {
 

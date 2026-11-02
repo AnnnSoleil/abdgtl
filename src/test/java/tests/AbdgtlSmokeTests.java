@@ -6,7 +6,8 @@ import pages.MainPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
@@ -22,23 +23,19 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 1. Главная страница открывается")
     void mainPageShouldOpen() {
-        open("");
+        String textSearch = "Мы разрабатываем цифровые экосистемы";
+        String textSlogan = "Мы разрабатываем цифровые экосистемы и внедряем новые технологичные продукты для удобства клиентов банка";
+        mainPage.openPage()
+                .checkSlogan(textSearch, textSlogan);
 
         webdriver().shouldHave(urlStartingWith(baseUrl));
-        $$(".tn-atom")
-                .filterBy(text("Мы разрабатываем цифровые экосистемы"))
-                .findBy(visible)
-                .shouldHave(text(
-                        "Мы разрабатываем цифровые экосистемы и внедряем новые технологичные " +
-                                "продукты для удобства клиентов банка"
-                ));
     }
 
     @Test
     @DisplayName("Тест 2. Дочерние страницы открываются из меню")
     void childPagesShouldOpenFromMenu() {
 
-        open("");
+        mainPage.openPage();
 
         header.clickMenuItem("О Нас");
         webdriver().shouldHave(url(baseUrl + "/"));
@@ -57,7 +54,7 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 3. На основных страницах отображаются ожидаемые заголовки")
     void pagesShouldHaveExpectedHeadings() {
-        open("");
+        mainPage.openPage();
 
         $$("h1, h2, h3, .tn-atom")
                 .findBy(exactText("Все по-взрослому"))
@@ -98,10 +95,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         String email = "info@abdgtl.com";
         String phone = "+7(843) 294-72-61";
 
-        open("");
+        mainPage.openPage();
 
         footer.checkContacts(email, phone);
-
     }
 
     @Test
@@ -112,11 +108,8 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         String textUser = "Пользовательское соглашение использования сайта";
         String hrefUser = "https://static.abdt.ru/docs/user_agreement_for_site_use.pdf";
 
-        open("");
-
-        mainPage
+        mainPage.openPage()
                 .checkLegalLink(textPolicy, hrefPolicy)
                 .checkLegalLink(textUser, hrefUser);
-
     }
 }
