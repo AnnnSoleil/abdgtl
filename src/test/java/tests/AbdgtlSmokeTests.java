@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.BlogPage;
 import pages.MainPage;
+import pages.ProductsPage;
+import pages.TechnologiesPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
 
@@ -21,6 +23,8 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     private final FooterComponent footer = new FooterComponent();
     private final MainPage mainPage = new MainPage();
     private final BlogPage blogPage = new BlogPage();
+    private final TechnologiesPage technologiesPage = new TechnologiesPage();
+    private final ProductsPage productsPage = new ProductsPage();
 
     @Test
     @DisplayName("Тест 1. Главная страница открывается")
@@ -62,21 +66,11 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         blogPage.openPageBlog()
                 .checkHeadingBlog("Даем шума");
 
-//        $$(".t-section__title")
-//                .findBy(exactText("Даем шума"))
-//                .shouldBe(visible);
+        technologiesPage.openPageTechnologies()
+                        .checkHeadingTechnologies("Технологический радар AB Digital");
 
-        open("/technologies");
-
-        $$(".t-title")
-                .findBy(exactText("Технологический радар AB Digital"))
-                .shouldBe(visible);
-
-        open("/productsandservices");
-
-        $$(".t-section__title")
-                .findBy(exactText("Продукты"))
-                .shouldBe(visible);
+        productsPage.openPageProducts()
+                .checkHeadingProducts("Продукты");
     }
 
 
