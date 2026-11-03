@@ -4,8 +4,9 @@ import com.codeborne.selenide.ElementsCollection;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverConditions.url;
 
 public class MainPage {
     private final ElementsCollection links = $$("a");
@@ -40,6 +41,11 @@ public class MainPage {
                 .shouldHave(attribute(
                         "href",
                         href));
+        return this;
+    }
+
+    public MainPage checkUrl() {
+        webdriver().shouldHave(url(baseUrl + "/"));
         return this;
     }
 }

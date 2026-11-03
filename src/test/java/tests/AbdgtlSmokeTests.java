@@ -9,11 +9,8 @@ import pages.TechnologiesPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.url;
+import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
 
 
@@ -44,17 +41,16 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         mainPage.openPage();
 
         header.clickMenuItem("О Нас");
-        webdriver().shouldHave(url(baseUrl + "/"));
+        mainPage.checkUrl();
 
         header.clickMenuItem("Блог");
-        webdriver().shouldHave(url(baseUrl + "/blog"));
+        blogPage.checkUrlBlog();
 
         header.clickMenuItem("Технологии");
-        webdriver().shouldHave(url(baseUrl + "/technologies"));
+        technologiesPage.checkUrlTechnologies();
 
         header.clickMenuItem("Продукты и услуги");
-        webdriver().shouldHave(url(baseUrl + "/productsandservices"));
-
+        productsPage.checkUrlProducts();
     }
 
     @Test
@@ -67,7 +63,7 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
                 .checkHeadingBlog("Даем шума");
 
         technologiesPage.openPageTechnologies()
-                        .checkHeadingTechnologies("Технологический радар AB Digital");
+                .checkHeadingTechnologies("Технологический радар AB Digital");
 
         productsPage.openPageProducts()
                 .checkHeadingProducts("Продукты");
