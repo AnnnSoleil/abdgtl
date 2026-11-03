@@ -15,7 +15,14 @@ public class MainPage {
         return this;
     }
 
-    public MainPage checkSlogan(String textSearch, String textSlogan) {
+    public MainPage checkingHeading(String heading) {
+        $$("h1, h2, h3, .tn-atom")
+                .findBy(exactText(heading))
+                .shouldBe(visible);
+        return this;
+    }
+
+    public MainPage checkingSlogan(String textSearch, String textSlogan) {
         $$(".tn-atom")
                 .filterBy(text(textSearch))
                 .findBy(visible)

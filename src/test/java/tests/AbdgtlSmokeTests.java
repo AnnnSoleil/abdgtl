@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pages.BlogPage;
 import pages.MainPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
@@ -19,6 +20,7 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     private final HeaderComponent header = new HeaderComponent();
     private final FooterComponent footer = new FooterComponent();
     private final MainPage mainPage = new MainPage();
+    private final BlogPage blogPage = new BlogPage();
 
     @Test
     @DisplayName("Тест 1. Главная страница открывается")
@@ -26,7 +28,7 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         String textSearch = "Мы разрабатываем цифровые экосистемы";
         String textSlogan = "Мы разрабатываем цифровые экосистемы и внедряем новые технологичные продукты для удобства клиентов банка";
         mainPage.openPage()
-                .checkSlogan(textSearch, textSlogan);
+                .checkingSlogan(textSearch, textSlogan);
 
         webdriver().shouldHave(urlStartingWith(baseUrl));
     }
@@ -54,17 +56,15 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 3. На основных страницах отображаются ожидаемые заголовки")
     void pagesShouldHaveExpectedHeadings() {
-        mainPage.openPage();
+        mainPage.openPage()
+                .checkingHeading("Все по-взрослому");
 
-        $$("h1, h2, h3, .tn-atom")
-                .findBy(exactText("Все по-взрослому"))
-                .shouldBe(visible);
+        blogPage.openPageBlog()
+                .checkHeadingBlog("Даем шума");
 
-        open("/blog");
-
-        $$(".t-section__title")
-                .findBy(exactText("Даем шума"))
-                .shouldBe(visible);
+//        $$(".t-section__title")
+//                .findBy(exactText("Даем шума"))
+//                .shouldBe(visible);
 
         open("/technologies");
 
@@ -83,7 +83,7 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     @Test
     @DisplayName("Тест 4. Кнопка вакансий содержит корректную ссылку")
     void vacancyButtonsShouldHaveCorrectLink() {
-        open("");
+        mainPage.openPage();
 
         header.checkVacancyButtons();
 
