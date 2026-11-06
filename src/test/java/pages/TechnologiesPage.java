@@ -9,19 +9,19 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 public class TechnologiesPage {
     private static final String PATH = "/technologies";
 
-    public TechnologiesPage openPageTechnologies() {
+    public TechnologiesPage openPage() {
         open(PATH);
         return this;
     }
 
-    public TechnologiesPage checkHeadingTechnologies(String heading) {
+    public TechnologiesPage checkHeading(String heading) {
         $$(".t-title")
                 .findBy(exactText(heading))
                 .shouldBe(visible);
         return this;
     }
 
-    public TechnologiesPage checkUrlTechnologies() {
+    public TechnologiesPage checkUrl() {
         webdriver().shouldHave(url(baseUrl + PATH));
         return this;
     }

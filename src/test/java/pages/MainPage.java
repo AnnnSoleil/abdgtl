@@ -16,14 +16,14 @@ public class MainPage {
         return this;
     }
 
-    public MainPage checkingHeading(String heading) {
+    public MainPage checkHeading(String heading) {
         $$("h1, h2, h3, .tn-atom")
                 .findBy(exactText(heading))
                 .shouldBe(visible);
         return this;
     }
 
-    public MainPage checkingSlogan(String textSearch, String textSlogan) {
+    public MainPage checkSlogan(String textSearch, String textSlogan) {
         $$(".tn-atom")
                 .filterBy(text(textSearch))
                 .findBy(visible)
@@ -46,6 +46,17 @@ public class MainPage {
 
     public MainPage checkUrl() {
         webdriver().shouldHave(url(baseUrl + "/"));
+        return this;
+    }
+
+    public MainPage checkVacancyButtons(String href) {
+        links
+                .filterBy(exactText("Вперёд к вакансиям!"))
+                .filterBy(visible)
+                .shouldHave(size(2))
+                .forEach(button ->
+                        button.shouldHave(attribute("href", href))
+                );
         return this;
     }
 }

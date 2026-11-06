@@ -10,19 +10,19 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 public class BlogPage {
     private static final String PATH = "/blog";
 
-    public BlogPage openPageBlog() {
+    public BlogPage openPage() {
         open(PATH);
         return this;
     }
 
-    public BlogPage checkHeadingBlog(String heading) {
+    public BlogPage checkHeading(String heading) {
         $$(".t-section__title")
                 .findBy(exactText(heading))
                 .shouldBe(visible);
         return this;
     }
 
-    public BlogPage checkUrlBlog() {
+    public BlogPage checkUrl() {
         webdriver().shouldHave(url(baseUrl + PATH));
         return this;
     }

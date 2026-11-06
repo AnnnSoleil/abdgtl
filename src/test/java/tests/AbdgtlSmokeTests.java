@@ -9,10 +9,6 @@ import pages.TechnologiesPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
-
 
 public class AbdgtlSmokeTests extends AbdgtlBase {
 
@@ -29,9 +25,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         String textSearch = "Мы разрабатываем цифровые экосистемы";
         String textSlogan = "Мы разрабатываем цифровые экосистемы и внедряем новые технологичные продукты для удобства клиентов банка";
         mainPage.openPage()
-                .checkingSlogan(textSearch, textSlogan);
+                .checkUrl()
+                .checkSlogan(textSearch, textSlogan);
 
-        webdriver().shouldHave(urlStartingWith(baseUrl));
     }
 
     @Test
@@ -44,39 +40,41 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
         mainPage.checkUrl();
 
         header.clickMenuItem("Блог");
-        blogPage.checkUrlBlog();
+        blogPage.checkUrl();
 
         header.clickMenuItem("Технологии");
-        technologiesPage.checkUrlTechnologies();
+        technologiesPage.checkUrl();
 
         header.clickMenuItem("Продукты и услуги");
-        productsPage.checkUrlProducts();
+        productsPage.checkUrl();
     }
 
     @Test
     @DisplayName("Тест 3. На основных страницах отображаются ожидаемые заголовки")
     void pagesShouldHaveExpectedHeadings() {
         mainPage.openPage()
-                .checkingHeading("Все по-взрослому");
+                .checkHeading("Все по-взрослому");
 
-        blogPage.openPageBlog()
-                .checkHeadingBlog("Даем шума");
+        blogPage.openPage()
+                .checkHeading("Даем шума");
 
-        technologiesPage.openPageTechnologies()
-                .checkHeadingTechnologies("Технологический радар AB Digital");
+        technologiesPage.openPage()
+                .checkHeading("Технологический радар AB Digital");
 
-        productsPage.openPageProducts()
-                .checkHeadingProducts("Продукты");
+        productsPage.openPage()
+                .checkHeading("Продукты");
     }
 
 
     @Test
     @DisplayName("Тест 4. Кнопка вакансий содержит корректную ссылку")
     void vacancyButtonsShouldHaveCorrectLink() {
-        mainPage.openPage();
+        String vacancyUrl = "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list";
 
-        header.checkVacancyButtons();
+        mainPage.openPage()
+                .checkVacancyButtons(vacancyUrl);
 
+        header.checkVacancyButton();
     }
 
     @Test

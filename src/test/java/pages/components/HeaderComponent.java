@@ -21,7 +21,7 @@ public class HeaderComponent {
         return this;
     }
 
-    public HeaderComponent checkVacancyButtons() {
+    public HeaderComponent checkVacancyButton() {
         links
                 .filterBy(exactText("Вперёд к вакансиям!"))
                 .filterBy(visible)

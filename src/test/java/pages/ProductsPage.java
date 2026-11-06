@@ -9,19 +9,19 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 public class ProductsPage {
     private static final String PATH = "/productsandservices";
 
-    public ProductsPage openPageProducts() {
+    public ProductsPage openPage() {
         open(PATH);
         return this;
     }
 
-    public ProductsPage checkHeadingProducts(String heading) {
+    public ProductsPage checkHeading(String heading) {
         $$(".t-section__title")
                 .findBy(exactText(heading))
                 .shouldBe(visible);
         return this;
     }
 
-    public ProductsPage checkUrlProducts() {
+    public ProductsPage checkUrl() {
         webdriver().shouldHave(url(baseUrl + PATH));
         return this;
     }
