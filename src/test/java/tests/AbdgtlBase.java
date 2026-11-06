@@ -21,19 +21,22 @@ public class AbdgtlBase {
         Configuration.browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");
         Configuration.timeout = 15000;
         Configuration.pageLoadStrategy = "eager";
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
         SelenideLogger.addListener("allure", new AllureSelenide());
-//        Configuration.browserCapabilities = capabilities;
-//        Configuration.remote = String.format(
-//                "https://%s:%s@%s",
-//                System.getProperty("REMOTE_LOGIN", "user1"),
-//                System.getProperty("REMOTE_PASSWORD", "1234"),
-//                System.getProperty("REMOTE_URL", "selenoid.autotests.cloud/wd/hub")
-//        );
+        String remoteUrl = System.getProperty("REMOTE_URL");
+        if (remoteUrl != null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = String.format(
+                    "https://%s:%s@%s",
+                    System.getProperty("REMOTE_LOGIN"),
+                    System.getProperty("REMOTE_PASSWORD"),
+                    remoteUrl
+            );
+        }
     }
 
     @AfterEach
@@ -41,7 +44,9 @@ public class AbdgtlBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-//        Attach.addVideo();
+        if (Configuration.remote != null) {
+            Attach.addVideo();
+        }
         closeWebDriver();
     }
 }

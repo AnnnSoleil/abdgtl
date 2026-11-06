@@ -11,6 +11,7 @@ public class FooterComponent {
 
     public FooterComponent checkContacts(String email, String phone) {
         footer
+                .scrollTo()
                 .shouldBe(visible)
                 .shouldHave(
                         text(email),

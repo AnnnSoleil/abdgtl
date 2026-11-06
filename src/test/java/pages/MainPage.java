@@ -27,6 +27,7 @@ public class MainPage {
         $$(".tn-atom")
                 .filterBy(text(textSearch))
                 .findBy(visible)
+                .scrollTo()
                 .shouldHave(text(textSlogan));
         return this;
     }
@@ -37,6 +38,7 @@ public class MainPage {
                 .filterBy(exactText(linkText))
                 .shouldHave(size(1))
                 .first()
+                .scrollTo()
                 .shouldBe(visible)
                 .shouldHave(attribute(
                         "href",
