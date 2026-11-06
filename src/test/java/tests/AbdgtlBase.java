@@ -2,6 +2,8 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 //import helpers.Attach;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -21,6 +23,7 @@ public class AbdgtlBase {
                 "enableVNC", true,
                 "enableVideo", true
         ));
+        SelenideLogger.addListener("allure", new AllureSelenide());
 //        Configuration.browserCapabilities = capabilities;
 //        Configuration.remote = String.format(
 //                "https://%s:%s@%s",
