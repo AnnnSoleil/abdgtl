@@ -8,7 +8,7 @@ repositories {
 }
 
 def selenideVersion = "7.13.0",
-    allureVersion = "2.19.0", //"2.32.0",
+    allureVersion = "2.32.0",
     junitVersion = "5.14.1",
     slf4jVersion = "2.0.17"
 
@@ -18,7 +18,7 @@ allure {
     }
     adapter {
         aspectjWeaver.set(true)
-        resultsDir.set(file("allure-results"))
+        resultsDir.set(file("build/allure-results"))
         frameworks {
             junit5 {
                 adapterVersion.set(allureVersion)
@@ -29,11 +29,10 @@ allure {
 
 dependencies {
     testImplementation (
-            'io.qameta.allure:allure-junit5:2.29.1',
-            'org.junit.jupiter:junit-jupiter-engine:5.10.2',
-            'io.qameta.allure:allure-selenide:2.29.1',
+            "io.qameta.allure:allure-junit5:$allureVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
             "com.codeborne:selenide:$selenideVersion",
-            "org.junit.jupiter:junit-jupiter:$junitVersion", //'org.junit.jupiter:junit-jupiter:5.10.2',
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion"
     )
 
