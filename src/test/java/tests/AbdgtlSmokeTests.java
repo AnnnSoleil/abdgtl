@@ -1,6 +1,8 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.BlogPage;
 import pages.MainPage;
@@ -9,7 +11,9 @@ import pages.TechnologiesPage;
 import pages.components.FooterComponent;
 import pages.components.HeaderComponent;
 
-
+@Owner("AnnnSoleil")
+@Tag("smoke")
+@Link(value = "abdgtl.com", url = "https://abdgtl.com")
 public class AbdgtlSmokeTests extends AbdgtlBase {
 
     private final HeaderComponent header = new HeaderComponent();
@@ -20,6 +24,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     private final ProductsPage productsPage = new ProductsPage();
 
     @Test
+    @Feature("Главная страница")
+    @Story("Открытие главной страницы")
+    @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Тест 1. Главная страница открывается")
     void mainPageShouldOpen() {
         String textSearch = "Мы разрабатываем цифровые экосистемы";
@@ -31,6 +38,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     }
 
     @Test
+    @Feature("Навигация")
+    @Story("Переход по пунктам меню")
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Тест 2. Дочерние страницы открываются из меню")
     void childPagesShouldOpenFromMenu() {
 
@@ -50,6 +60,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     }
 
     @Test
+    @Feature("Навигация")
+    @Story("Отображение заголовков основных страниц")
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Тест 3. На основных страницах отображаются ожидаемые заголовки")
     void pagesShouldHaveExpectedHeadings() {
         mainPage.openPage()
@@ -67,6 +80,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
 
 
     @Test
+    @Feature("Главная страница")
+    @Story("Кнопки вакансий ведут на hh.ru")
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Тест 4. Кнопка вакансий содержит корректную ссылку")
     void vacancyButtonsShouldHaveCorrectLink() {
         String vacancyUrl = "https://kazan.hh.ru/employer/1741901?hhtmFrom=vacancy_search_list";
@@ -78,6 +94,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     }
 
     @Test
+    @Feature("Футер")
+    @Story("Футер отображается")
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Тест 5. Футер отображается")
     void footerShouldBeVisible() {
         String email = "info@abdgtl.com";
@@ -89,6 +108,9 @@ public class AbdgtlSmokeTests extends AbdgtlBase {
     }
 
     @Test
+    @Feature("Юридические документы")
+    @Story("Отображаются правильные ссылки на юридические документы")
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Тест 6. Ссылки на юридические документы отображаются и содержат корректные адреса")
     void legalDocumentLinksShouldBeAvailable() {
         String textPolicy = "Политика обработки персональных данных";
