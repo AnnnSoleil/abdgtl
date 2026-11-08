@@ -70,13 +70,13 @@ UI-автотесты на Java с запуском в Jenkins, отчётами
 Удалённый запуск в Selenoid:
 
 ```bash
-./gradlew clean test \
-  "-DBASE_URL=https://abdgtl.com" \
-  "-DBROWSER=chrome" \
-  "-DBROWSER_SIZE=1920x1080" \
-  "-DREMOTE_URL=<адрес Selenoid>" \
-  "-DREMOTE_LOGIN=<логин>" \
-  "-DREMOTE_PASSWORD=<пароль>"
+./gradlew clean test "-DREMOTE_URL=<адрес Selenoid>" "-DREMOTE_LOGIN=<логин>" "-DREMOTE_PASSWORD=<пароль>"
+```
+
+Запуск в другом браузере или с другим размером окна:
+
+```bash
+./gradlew clean test "-DBROWSER=firefox" "-DBROWSER_SIZE=1366x768"
 ```
 
 Открыть отчёт Allure после прогона:
